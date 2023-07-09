@@ -31,9 +31,7 @@ class Road{
        ctx.moveTo(0,400);
        ctx.lineTo(500,400);
        ctx.stroke();
- 
-     
-       
+
       ctx.restore();
     }
 }

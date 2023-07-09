@@ -6,21 +6,20 @@ if(canvas.getContext){
    
     const road=new Road();
     const car=new Car();
-    const house=new House();
+ 
     const greenTerrain=new GreenTerrain();
     const sky=new Sky();
 
 
     const animate=(time)=>{
         ctx.clearRect(0,0,canvas.width,canvas.height)
-        ctx.globalAlpha=0.2;
-    
-        greenTerrain.draw(ctx);
+        //ctx.globalAlpha=0.2;
+
+      
         sky.draw(ctx);
+        greenTerrain.draw(ctx);
 
-        house.update(canvas.width);
-        house.draw(ctx);
-
+      
         road.draw(ctx,time);
         car.draw(ctx);
 

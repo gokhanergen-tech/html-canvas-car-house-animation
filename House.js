@@ -36,6 +36,7 @@ class House{
         this.lineDrawer.draw(ctx,100,100,100,200);
         this.lineDrawer.draw(ctx,100,200,200,200);
         this.lineDrawer.draw(ctx,200,200,200,100);
+      
         ctx.restore();
 
     }
