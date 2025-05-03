@@ -13,7 +13,7 @@ class Smoke {
 
   draw(ctx, currentCounter) {
     if (currentCounter >= this.maxSmokeCount) {
-      ctx.globalAlpha = 30 / (this.value * 2);
+      ctx.globalAlpha = 500 / (this.value * 2);
       ctx.save();
 
       ctx.translate(0, -this.value / 2);

@@ -27,11 +27,10 @@ class House {
     ctx.scale(this.scaleSize, this.scaleSize);
 
     ctx.translate(this.xHousePos, this.translateHouse);
+    ctx.drawImage(Assets.houseImage, 100, 180);
 
     this.smokes.update();
     this.smokes.draw(ctx);
-
-    ctx.drawImage(Assets.houseImage, 100, 180);
 
     ctx.restore();
   }
