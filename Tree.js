@@ -1,37 +1,39 @@
-class Tree{
-    constructor(position,scale=1){
-        this.position=position;
-        this.scale=scale;
-        this.xPos=0;
+class Tree {
+  position;
+  scale;
+
+  generateIntegerPos(posMin, posMax) {
+    return parseInt(randomNumber(posMin, posMax));
+  }
+
+  randomReset(canvasWidth) {
+    this.scale = randomNumber(0.5, 1);
+    this.xPos =
+      this.generateIntegerPos(canvasWidth, canvasWidth + 1000) / this.scale;
+    this.position = {
+      y: this.generateIntegerPos(100, 250),
+      x: this.xPos,
+    };
+  }
+
+  update(ctx) {
+    const canvasWidth = ctx.canvas.width;
+
+    if (!this.position) this.randomReset(canvasWidth);
+
+    this.position.x -= 2;
+
+    if (this.position.x * this.scale + 100 < 0) {
+      this.randomReset(canvasWidth);
     }
+  }
 
-    update(ctx){
-       ctx.save();
-       const reversedScale=1/this.scale;
-       this.xPos+=reversedScale;
-       
-       if(this.xPos-ctx.canvas.width*reversedScale>50*reversedScale*2){
-        this.xPos=0;
-       }
+  draw(ctx) {
+    ctx.save();
+    ctx.scale(this.scale, this.scale);
 
-       ctx.scale(this.scale,this.scale);
+    ctx.drawImage(Assets.treeImage, this.position.x, this.position.y, 100, 100);
 
-       ctx.translate(0,Math.abs(1-reversedScale)*this.position.y);
-
-       ctx.translate(-this.position.x*reversedScale-50*reversedScale,0);
-       ctx.translate(this.xPos,0);
-    
-    }
-
-    draw(ctx){
-       ctx.fillStyle="gray";
-       ctx.fillRect(this.position.x,this.position.y,10,60);
-       ctx.fillStyle="lightgreen";
-       ctx.beginPath();
-       ctx.moveTo(this.position.x-20,this.position.y);
-       ctx.lineTo(this.position.x+30,this.position.y);
-       ctx.lineTo(this.position.x+5,this.position.y-50);
-       ctx.fill();
-       ctx.restore();
-    }
+    ctx.restore();
+  }
 }

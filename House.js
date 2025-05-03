@@ -1,43 +1,40 @@
-class House{
-    xHousePos=0;
-    lineWidth=10;
-    lineCap="round";
+class House {
+  xHousePos = 0;
+  yHousePos = 0;
+  lineWidth = 10;
+  lineCap = "round";
+  scaleSize = 0.2;
+  houseWidth = 100;
+  translateHouse = 225;
 
-    constructor(){
-        this.lineDrawer=new LineDrawer();
-        this.smokes=new Smokes();
+  constructor() {
+    this.smokes = new Smokes();
+  }
+
+  update(canvasWidth) {
+    this.xHousePos -= 2 / this.scaleSize;
+
+    if (this.xHousePos + this.houseWidth / this.scaleSize <= 0) {
+      this.xHousePos =
+        canvasWidth / this.scaleSize + this.houseWidth + 1000 * 10;
+      this.smokes.reset();
     }
+  }
 
-    update(canvasWidth){
-        this.xHousePos+=2;
-        if(this.xHousePos-100-canvasWidth*2===0){
-            this.xHousePos=0;
-            this.smokes.reset();
-        }
-    }
+  draw(ctx) {
+    ctx.lineWidth = this.lineWidth;
+    ctx.lineCap = this.lineCap;
 
-    draw(ctx){
-        ctx.lineWidth=this.lineWidth;
-        ctx.lineCap=this.lineCap;
-       
-    
-        ctx.save();
-        ctx.scale(0.5,0.5);
-        ctx.translate(-200,200)
-        ctx.translate(this.xHousePos,200)
-       
-        this.smokes.update();
-        this.smokes.draw(ctx);
-        this.lineDrawer.draw(ctx,100,100,150,50);
-        this.lineDrawer.draw(ctx,110,70,110,80);
-        
-        this.lineDrawer.draw(ctx,150,50,200,100);
-        this.lineDrawer.draw(ctx,100,100,200,100);
-        this.lineDrawer.draw(ctx,100,100,100,200);
-        this.lineDrawer.draw(ctx,100,200,200,200);
-        this.lineDrawer.draw(ctx,200,200,200,100);
-      
-        ctx.restore();
+    ctx.save();
+    ctx.scale(this.scaleSize, this.scaleSize);
+    ctx.translate(-this.translateHouse, this.translateHouse);
+    ctx.translate(this.xHousePos, this.translateHouse);
 
-    }
+    this.smokes.update();
+    this.smokes.draw(ctx);
+
+    ctx.drawImage(Assets.houseImage, 100, 180 / this.scaleSize);
+
+    ctx.restore();
+  }
 }
