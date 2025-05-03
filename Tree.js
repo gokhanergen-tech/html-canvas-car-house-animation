@@ -21,9 +21,9 @@ class Tree {
 
     if (!this.position) this.randomReset(canvasWidth);
 
-    this.position.x -= 2;
+    this.position.x -= 2 / this.scale;
 
-    if (this.position.x * this.scale + 100 < 0) {
+    if (this.position.x + 100 < 0) {
       this.randomReset(canvasWidth);
     }
   }

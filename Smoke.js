@@ -18,7 +18,7 @@ class Smoke {
 
       ctx.translate(0, -this.value / 2);
       ctx.arc(
-        100 + this.value / 15,
+        350 + this.value / 15,
         100 - this.value / 15,
         this.value / 20,
         0,

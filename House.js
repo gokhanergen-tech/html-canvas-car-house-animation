@@ -4,8 +4,7 @@ class House {
   lineWidth = 10;
   lineCap = "round";
   scaleSize = 0.2;
-  houseWidth = 100;
-  translateHouse = 225;
+  translateHouse = 1200;
 
   constructor() {
     this.smokes = new Smokes();
@@ -14,9 +13,8 @@ class House {
   update(canvasWidth) {
     this.xHousePos -= 2 / this.scaleSize;
 
-    if (this.xHousePos + this.houseWidth / this.scaleSize <= 0) {
-      this.xHousePos =
-        canvasWidth / this.scaleSize + this.houseWidth + 1000 * 10;
+    if (this.xHousePos <= -2000) {
+      this.xHousePos = canvasWidth / this.scaleSize + 1000;
       this.smokes.reset();
     }
   }
@@ -27,13 +25,13 @@ class House {
 
     ctx.save();
     ctx.scale(this.scaleSize, this.scaleSize);
-    ctx.translate(-this.translateHouse, this.translateHouse);
+
     ctx.translate(this.xHousePos, this.translateHouse);
 
     this.smokes.update();
     this.smokes.draw(ctx);
 
-    ctx.drawImage(Assets.houseImage, 100, 180 / this.scaleSize);
+    ctx.drawImage(Assets.houseImage, 100, 180);
 
     ctx.restore();
   }

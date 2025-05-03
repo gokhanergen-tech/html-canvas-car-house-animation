@@ -12,7 +12,7 @@ class GreenTerrain {
     ctx.save();
 
     ctx.beginPath();
-    ctx.fillStyle = "green";
+    ctx.fillStyle = "white";
     ctx.moveTo(0, 350);
     ctx.lineTo(0, 100);
     ctx.lineTo(500, 100);
